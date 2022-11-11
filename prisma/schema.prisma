@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -23,13 +23,13 @@ model User {
 }
 
 model Chat {
-    id        Int      @id @default(autoincrement())
+    id        String      @id @default(uuid())
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     message   String
 
-    userId Int
+    userId String
     user   User @relation(fields: [userId], references: [id])
 }
