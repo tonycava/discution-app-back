@@ -11,7 +11,7 @@ ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
-COPY . .
+ONBUILD COPY . .
 
 FROM node:18-alpine
 
@@ -19,8 +19,6 @@ WORKDIR /app
 
 # Copy node_modules from builder image
 COPY --from=builder /app/. .
-
-ADD . /app
 
 EXPOSE 3000
 
