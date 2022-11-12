@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json .
 
-RUN yarn install --frozen-lockfile \
+ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 

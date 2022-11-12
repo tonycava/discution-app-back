@@ -10,11 +10,9 @@ steps:
   - name: environnement
     commands:
       - cp /root/cloned_repo/discution-app-back/.env .
-      - ls -la
 
   - name: build
     commands:
-      - ls -la
       - docker build -t discutoi:back .
 
   - name: stop-previous-version
