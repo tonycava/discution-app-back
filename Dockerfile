@@ -15,14 +15,13 @@ COPY . .
 RUN ls -la
 RUN pwd
 
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Copy node_modules from builder image
-COPY --from=builder /app/. .
-
-RUN ls -la
+#FROM node:18-alpine
+#
+#WORKDIR /app
+#
+#COPY --from=builder /app/. .
+#
+#RUN ls -la
 
 EXPOSE 3000
 
