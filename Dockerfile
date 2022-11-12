@@ -11,7 +11,9 @@ ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
-ONBUILD COPY . .
+COPY . .
+
+RUN ls -la
 
 FROM node:18-alpine
 
