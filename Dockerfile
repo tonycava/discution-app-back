@@ -18,7 +18,9 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy node_modules from builder image
-COPY --from=builder /app .
+COPY --from=builder /app/. .
+COPY /app/.env .
+
 ADD . /app
 
 EXPOSE 3000
