@@ -2,19 +2,20 @@ FROM node:18-alpine as builder
 
 WORKDIR /app
 
-ONBUILD ADD package*.json .
+COPY package*.json .
 
 ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
-ONBUILD COPY . .
+COPY . .
 
 FROM node:18-alpine
 
 WORKDIR /app
 
 COPY --from=builder /app/. .
+ADD . /app
 
 EXPOSE 3000
 
