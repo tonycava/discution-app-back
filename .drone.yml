@@ -13,6 +13,7 @@ steps:
 
   - name: build
     commands:
+      - ls -la
       - docker build -t discutoi:back .
 
   - name: stop-previous-version

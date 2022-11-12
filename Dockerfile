@@ -4,7 +4,7 @@ FROM node:18-alpine as builder
 WORKDIR /app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-ONBUILD ADD package*.json /app/
+ONBUILD ADD package*.json .
 
 # Install app dependencies
 ONBUILD RUN yarn install --frozen-lockfile \
@@ -19,7 +19,6 @@ WORKDIR /app
 
 # Copy node_modules from builder image
 COPY --from=builder /app/. .
-COPY --from=builder /app/.env .
 
 ADD . /app
 
