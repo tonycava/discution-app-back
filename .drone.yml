@@ -1,23 +1,14 @@
 kind: pipeline
 type: exec
 name: default
-
-workspace:
-    base: /root
-    path: cloned_repo/discution-app-front
-
 platform:
   os: linux
   arch: amd64
 
 steps:
-  - name: environnement
-    commands:
-      - pwd
-      - cp /root/cloned_repo/discution-app-back/.env .
-
   - name: build
     commands:
+      - cp /root/cloned_repo/discution-app-back/.env .
       - docker build -t discutoi:back .
 
   - name: stop-previous-version
