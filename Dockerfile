@@ -13,6 +13,14 @@ COPY . .
 
 RUN yarn prisma generate
 
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy node_modules from builder image
+COPY --from=builder /app .
+ADD . /app
+
 EXPOSE 3000
 
 CMD [ "yarn", "start:prod" ]
