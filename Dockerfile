@@ -15,4 +15,4 @@ RUN yarn prisma generate
 
 EXPOSE 3000
 
-CMD [ "yarn", "prod" ]
+CMD [ "yarn", "start:prod" ]
