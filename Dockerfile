@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json .
 
-ONBUILD RUN yarn install --frozen-lockfile \
+RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
@@ -14,7 +14,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app /app
+COPY --from=builder /app .
 
 EXPOSE 3000
 
