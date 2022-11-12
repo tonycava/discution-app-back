@@ -3,7 +3,10 @@ import { Server } from 'socket.io';
 import { ChatService } from '../chat/chat.service';
 import { ChatDto } from '../chat/dto/chat.dto';
 
-@WebSocketGateway({ cors: true })
+@WebSocketGateway({
+  cors: true,
+  transports: ["polling", "websocket"]
+})
 export class GatewayController {
   constructor(private chatService: ChatService) {}
 
@@ -13,10 +16,10 @@ export class GatewayController {
   onModuleInit() {
     this.server.on('connection', () => {
       console.log('New client connected');
+    });
 
-      this.server.on('disconnect', () => {
-        console.log('Client disconnected');
-      });
+    this.server.on('disconnect', () => {
+      console.log('Client disconnected');
     });
   }
 
