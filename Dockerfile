@@ -4,24 +4,25 @@ FROM node:18-alpine as builder
 WORKDIR /app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json .
+ONBUILD ADD package*.json .
 
 # Install app dependencies
-RUN yarn install --frozen-lockfile \
+ONBUILD RUN yarn install --frozen-lockfile \
+    && yarn cache clean --force \
     && yarn prisma generate
 
-COPY . .
+ONBUILD COPY . .
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy node_modules from builder image
+COPY --from=builder /app/. .
+
+ADD . /app
 
 RUN ls -la
-RUN pwd
-
-#FROM node:18-alpine
-#
-#WORKDIR /app
-#
-#COPY --from=builder /app/. .
-#
-#RUN ls -la
 
 EXPOSE 3000
 
