@@ -11,7 +11,7 @@ ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
-COPY . .
+ONBUILD COPY . .
 
 RUN ls -la
 RUN pwd
