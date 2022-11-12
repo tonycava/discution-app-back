@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=builder /app/. .
 
 ADD . /app
-ADD .env /app
+ADD /app/.env /app
 
 EXPOSE 3000
 
