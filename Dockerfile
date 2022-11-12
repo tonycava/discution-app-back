@@ -24,5 +24,5 @@ ADD . /app
 ADD .env /app
 
 EXPOSE 3000
-a
+
 CMD [ "yarn", "start:prod" ]
