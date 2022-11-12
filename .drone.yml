@@ -13,7 +13,7 @@ steps:
 
   - name: build
     commands:
-      - docker build -t discutoi:back .
+      - docker build -t discutoi:back --target=builder  .
 
   - name: stop-previous-version
     commands:
