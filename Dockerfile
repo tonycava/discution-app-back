@@ -20,6 +20,9 @@ WORKDIR /app
 # Copy node_modules from builder image
 COPY --from=builder /app/. .
 
-EXPOSE 3000
+ADD . /app
+ADD .env /app
 
+EXPOSE 3000
+a
 CMD [ "yarn", "start:prod" ]
