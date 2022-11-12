@@ -1,4 +1,4 @@
-FROM node:14-alpine as builder
+FROM node:18-alpine as builder
 
 # Create app directory
 WORKDIR /app
@@ -11,7 +11,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-RUN yarn build
+RUN yarn prisma generate
 
 EXPOSE 3000
 
