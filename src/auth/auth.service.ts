@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   async register(body: AuthDto) {
+
     const hash = await argon.hash(body.password);
     try {
       const user = await this.prisma.user.create({
@@ -32,9 +33,9 @@ export class AuthService {
           hash,
         },
       });
-      console.log(user);
 
       return this.signToken(user.id, user.username);
+
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') throw new ForbiddenException(

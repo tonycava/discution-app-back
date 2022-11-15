@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 import { ChatService } from '../chat/chat.service';
 import { ChatDto } from '../chat/dto/chat.dto';
 
-@WebSocketGateway(3001, {
+@WebSocketGateway({
   cors: true,
   transports: ['polling', 'websocket'],
 })
