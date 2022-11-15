@@ -16,7 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app .
 
-#ADD . /app
 EXPOSE 3000
 
 CMD [ "yarn", "start:prod" ]

@@ -3,9 +3,9 @@ import { Server } from 'socket.io';
 import { ChatService } from '../chat/chat.service';
 import { ChatDto } from '../chat/dto/chat.dto';
 
-@WebSocketGateway({
+@WebSocketGateway(3001, {
   cors: true,
-  transports: ["polling", "websocket"]
+  transports: ['polling', 'websocket'],
 })
 export class GatewayController {
   constructor(private chatService: ChatService) {}
