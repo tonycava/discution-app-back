@@ -5,7 +5,6 @@ import { ChatDto } from '../chat/dto/chat.dto';
 
 @WebSocketGateway({
   cors: true,
-  transports: ['polling', 'websocket'],
 })
 export class GatewayController {
   constructor(private chatService: ChatService) {}
