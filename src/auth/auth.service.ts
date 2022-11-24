@@ -18,7 +18,7 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({
       where: { username: body.username, },
     });
-    const valid = await argon.verify(user?.hash, body?.password);
+    const valid = await argon.verify(user.hash, body.password);
     if (!valid || !user) throw new ForbiddenException('Invalid credentials');
     return this.signToken(user.id, user.username);
   }
@@ -27,6 +27,8 @@ export class AuthService {
 
     const hash = await argon.hash(body.password);
     try {
+      const hash = await argon.hash(body.password);
+
       const user = await this.prisma.user.create({
         data: {
           username: body.username,
