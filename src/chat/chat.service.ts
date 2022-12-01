@@ -6,6 +6,15 @@ import { ChatDto } from './dto/chat.dto';
 export class ChatService {
   constructor(private prisma: PrismaService) {}
 
+  getChats() {
+    return this.prisma.chat.findMany({
+      select: {
+        message: true,
+        userId: true,
+      },
+    });
+  }
+
   addChat({ message, userId }: ChatDto) {
     return this.prisma.chat.create({
       data: {
