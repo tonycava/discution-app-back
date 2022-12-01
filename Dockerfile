@@ -8,6 +8,8 @@ ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
     && yarn prisma generate
 
+RUN yarn add global rimraf
+
 COPY . .
 
 FROM node:18-alpine
