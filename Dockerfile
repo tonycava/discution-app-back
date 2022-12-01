@@ -6,7 +6,7 @@ COPY package*.json .
 
 ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
-    && yarn prisma generate \
+    && yarn prisma generate
 
 COPY . .
 
