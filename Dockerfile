@@ -6,9 +6,7 @@ COPY package*.json .
 
 ONBUILD RUN yarn install --frozen-lockfile \
     && yarn cache clean --force \
-    && yarn prisma generate
-
-RUN yarn add global rimraf
+    && yarn prisma generate \
 
 COPY . .
 
