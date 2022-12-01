@@ -13,7 +13,7 @@ export class ChatService {
         userId: true,
       },
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
       },
     });
   }
