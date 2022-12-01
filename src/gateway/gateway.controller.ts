@@ -9,9 +9,7 @@ import { ChatDto } from '../chat/dto/chat.dto';
 export class GatewayController {
   @WebSocketServer()
   server: Server;
-
   constructor(private chatService: ChatService) {}
-
 
   onModuleInit() {
     this.server.on('connection', (socket) => {
