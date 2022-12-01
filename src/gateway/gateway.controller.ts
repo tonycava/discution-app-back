@@ -12,6 +12,7 @@ export class GatewayController {
 
   constructor(private chatService: ChatService) {}
 
+
   onModuleInit() {
     this.server.on('connection', (socket) => {
       console.log('New client connected');
