@@ -12,6 +12,9 @@ export class ChatService {
         message: true,
         userId: true,
       },
+      orderBy: {
+        createdAt: 'asc',
+      },
     });
   }
 
