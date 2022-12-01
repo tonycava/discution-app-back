@@ -12,6 +12,10 @@ export class ChatService {
         message,
         userId,
       },
+      select: {
+        message: true,
+        userId: true,
+      },
     });
   }
 }

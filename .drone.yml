@@ -13,12 +13,12 @@ steps:
 
   - name: build
     commands:
-      - docker build -t discutoi:back .
+      - docker build -t koomei:back .
 
   - name: stop-previous-version
     commands:
-      - docker rm -f discutoi-back || true
+      - docker rm -f koomei-back || true
 
   - name: deploy
     commands:
-      - docker run -d -p 8051:3001 --name discutoi-back discutoi:back
+      - make deploy

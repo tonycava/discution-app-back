@@ -7,22 +7,21 @@ import { ChatDto } from '../chat/dto/chat.dto';
   cors: true,
 })
 export class GatewayController {
-  constructor(private chatService: ChatService) {}
-
   @WebSocketServer()
   server: Server;
 
-  onModuleInit() {
-    this.server.on('connection', () => {
-      console.log('New client connected');
-    });
+  constructor(private chatService: ChatService) {}
 
-    this.server.on('disconnect', () => {
-      console.log('Client disconnected');
+  onModuleInit() {
+    this.server.on('connection', (socket) => {
+      console.log('New client connected');
+      socket.on('disconnect', () => {
+        console.log('Client disconnected');
+      });
     });
   }
 
-  @SubscribeMessage('message')
+  @SubscribeMessage('newMessage')
   async onNewMessage(@MessageBody() data: ChatDto) {
     const chat = await this.chatService.addChat(data);
     this.server.emit('newChat', chat);
