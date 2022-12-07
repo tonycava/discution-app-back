@@ -7,8 +7,15 @@ import { User } from '@prisma/client';
 export class UserController {
 
   @UseGuards(JwtGuard)
+  @Get('is-ok')
+  isOk() {
+    return { message: 'Authorized' };
+  }
+
+  @UseGuards(JwtGuard)
   @Get('me')
   me(@GetUser() user: User) {
+    console.log('la');
     return user;
   }
 }

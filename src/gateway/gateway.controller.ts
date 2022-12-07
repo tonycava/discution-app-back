@@ -2,13 +2,19 @@ import { MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer } from
 import { Server } from 'socket.io';
 import { ChatService } from '../chat/chat.service';
 import { ChatDto } from '../chat/dto/chat.dto';
+import { OnModuleInit } from '@nestjs/common';
 
 @WebSocketGateway({
-  cors: true,
+  cors: {
+    origin: ['http://localhost:3000', 'https://koomei.tonycava.dev'],
+    credentials: true,
+  },
+  credentials: true,
 })
-export class GatewayController {
+export class GatewayController implements OnModuleInit {
   @WebSocketServer()
   server: Server;
+
   constructor(private chatService: ChatService) {}
 
   onModuleInit() {
