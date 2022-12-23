@@ -15,8 +15,7 @@ export class GatewayController implements OnModuleInit {
   @WebSocketServer()
   server: Server;
   
-  constructor(private chatService: ChatService) {
-  }
+  constructor(private chatService: ChatService) {}
   
   onModuleInit() {
     this.server.on('connection', (socket) => {
