@@ -11,25 +11,40 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
+  id String @id @default(uuid())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  username  String   @unique
-  hash  String
+  username String @unique
+  hash     String
 
-  chats Chat[]
+  chats  Chat[]
+  groups Group[]
 }
 
 model Chat {
-    id        String      @id @default(uuid())
+  id String @id @default(uuid())
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    message   String
+  message String
 
-    userId String
-    user   User @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  group   Group  @relation(fields: [groupId], references: [id])
+  groupId String
+}
+
+model Group {
+  id   String @id @default(uuid())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users User[]
+  chats Chat[]
 }

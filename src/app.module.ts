@@ -5,6 +5,7 @@ import { ChatModule } from './chat/chat.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { GroupModule } from './group/group.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -18,6 +19,7 @@ import configuration from './config/configuration';
     ChatModule,
     AuthModule,
     UserModule,
+    GroupModule,
   ],
 })
 export class AppModule {}

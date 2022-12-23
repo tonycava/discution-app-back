@@ -1,33 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { ChatDto } from './dto/chat.dto';
+import { ChatDto, Limit } from './dto/chat.dto';
 
 @Injectable()
 export class ChatService {
   constructor(private prisma: PrismaService) {}
-
-  getChats() {
+  
+  getChats({ start, end }: Limit) {
     return this.prisma.chat.findMany({
+      skip: +start,
+      take: +end,
       select: {
         message: true,
-        userId: true,
+        userId: true
       },
       orderBy: {
-        createdAt: 'desc',
-      },
+        createdAt: 'desc'
+      }
     });
   }
-
+  
   addChat({ message, userId }: ChatDto) {
     return this.prisma.chat.create({
       data: {
         message,
-        userId,
-      },
-      select: {
-        message: true,
-        userId: true,
-      },
+        user: {
+          connect: { id: userId }
+        },
+        group: {
+          connect: { id: '7035ae37-f630-4697-ab17-4d516eaba7d7' }
+        }
+      }
     });
   }
 }
