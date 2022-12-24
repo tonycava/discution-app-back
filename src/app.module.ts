@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { GroupModule } from './group/group.module';
 import configuration from './config/configuration';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import configuration from './config/configuration';
     UserModule,
     GroupModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
