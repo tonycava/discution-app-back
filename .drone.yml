@@ -9,6 +9,7 @@ platform:
 steps:
   - name: environnement
     commands:
+      - ls -la /home/tonycava/cloned_repo/discution-app-back/
       - cp /home/tonycava/cloned_repo/discution-app-back/.env .
 
   - name: build
