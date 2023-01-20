@@ -10,9 +10,9 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: ["http://localhost:3000", "https://koomei.tonycava.dev"],
+    origin: ['http://localhost:3000', 'https://koomei.tonycava.dev'],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
   });
 
   app.useGlobalPipes(new ValidationPipe({

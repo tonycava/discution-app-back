@@ -9,6 +9,11 @@ function cookieExtractor(req: Request) {
   return req?.cookies?.['jwt_token'] ?? null;
 }
 
+declare module "express" {
+  export interface Request {
+    user: { id: string, username: string, createdAt: Date, updatedAt: Date }
+  }
+}
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(

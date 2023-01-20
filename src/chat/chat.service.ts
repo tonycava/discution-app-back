@@ -1,35 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { ChatDto, Limit } from './dto/chat.dto';
+import { ChatDto, LimitQuery } from './dto/chat.dto';
 
 @Injectable()
 export class ChatService {
   constructor(private prisma: PrismaService) {}
 
-  getChats({ start, end }: Limit) {
+  getChatsByGroupId({ start, end, groupId }: LimitQuery) {
     return this.prisma.chat.findMany({
-      skip: + start,
-      take: + end,
-      select: {
-        message: true,
-        userId: true,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
+      skip: start,
+      take: end - start,
+      // select: { message: true, createdAt: true, userId: true, id: true, user: { select: { username: true } } },
+      orderBy: { createdAt: 'desc' },
+      where: { groupId },
     });
   }
 
-  addChat({ message, userId }: ChatDto) {
+  addChat({ message, userId, groupId }: ChatDto) {
+    console.log("add chat")
     return this.prisma.chat.create({
       data: {
         message,
         user: { connect: { id: userId } },
-        group: {
-          connectOrCreate: {
-            create: { name: 'general', id: '7035ae37-f630-4697-ab17-4d516eaba7d7' },
-            where: { id: '7035ae37-f630-4697-ab17-4d516eaba7d7' },
-          },
+        group: { connect: { id: groupId, },
         },
       },
     });
