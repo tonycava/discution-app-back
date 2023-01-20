@@ -17,7 +17,6 @@ export class ChatService {
   }
 
   addChat({ message, userId, groupId }: ChatDto) {
-    console.log("add chat")
     return this.prisma.chat.create({
       data: {
         message,

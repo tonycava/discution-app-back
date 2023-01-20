@@ -39,7 +39,6 @@ export class GatewayController implements OnModuleInit {
   async onNewMessage(
     @MessageBody() data: ChatDto
   ) {
-    console.log('new message');
     const chat = await this.chatService.addChat(data);
     this.server.to(data.groupId).emit('newChat', chat);
   }
